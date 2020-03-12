@@ -16,7 +16,7 @@ const logFactorialTable = [
 
 const logFactorial = (k: number) => {
     return logFactorialTable[k];
-}
+};
 
 const logSqrt2PI = 0.91893853320467267;
 
@@ -38,7 +38,7 @@ export default (random: Random, lambda = 1) => {
             }
 
             return x;
-        }
+        };
     } else {
         // generative method
         const smu = Math.sqrt(lambda);
@@ -65,7 +65,7 @@ export default (random: Random, lambda = 1) => {
                     v = random.next() * vR;
                 }
 
-                const us = 0.5 - Math.abs(u)
+                const us = 0.5 - Math.abs(u);
                 if (us < 0.013 && v > us) {
                     continue;
                 }
@@ -86,6 +86,6 @@ export default (random: Random, lambda = 1) => {
                     }
                 }
             }
-        }
+        };
     }
-}
+};

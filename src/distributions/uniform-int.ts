@@ -12,5 +12,5 @@ export default (random: Random, min: number, max: number) => {
 
     return () => {
         return (random.next() * (max - min + 1) + min) | 0;
-    }
-}
+    };
+};

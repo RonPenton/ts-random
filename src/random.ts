@@ -33,7 +33,7 @@ import seedrandom from "seedrandom";
 export class Random {
 
     private _generator: seedrandom.prng;
-    private _cache: { [key: string]: { key: string, distribution: Function } };
+    private _cache: { [key: string]: { key: string; distribution: Function } };
 
     constructor(seed: string) {
         ow(seed, ow.string);

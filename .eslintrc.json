@@ -4,7 +4,8 @@
         "node": true
     },
     "extends": [
-        "standard"
+        "standard",
+        "plugin:@typescript-eslint/recommended"
     ],
     "globals": {
         "Atomics": "readonly",
@@ -23,6 +24,8 @@
         "padded-blocks": "off",
         "space-before-function-paren": "off",
         "quotes": ["error", "double"],
-        "semi": ["error", "always"]
+        "semi": ["error", "always"],
+        "@typescript-eslint/explicit-function-return-type": "off",
+        "@typescript-eslint/no-explicit-any": "off"
     }
 }
