@@ -1,4 +1,4 @@
 "use strict";
 
-import * as Random from "./random";
+import Random from "./random";
 export default Random;

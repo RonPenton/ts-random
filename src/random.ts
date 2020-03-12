@@ -30,7 +30,7 @@ import seedrandom from "seedrandom";
  *
  * @param {RNG|function} [rng=Math.random] - Underlying pseudorandom number generator.
  */
-export class Random {
+export default class Random {
 
     private _generator: seedrandom.prng;
     private _cache: { [key: string]: { key: string; distribution: Function } };
@@ -287,6 +287,3 @@ export class Random {
         return value.distribution;
     }
 }
-
-// defaults to Math.random as its RNG
-export default new Random("Default");
