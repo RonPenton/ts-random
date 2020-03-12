@@ -1,9 +1,9 @@
 {
-  "name": "random",
+  "name": "ts-random",
   "version": "2.1.1",
   "description": "Seedable random number generator supporting many common distributions.",
-  "main": "index.js",
-  "module": "src/random.js",
+  "main": "./dist/index.js",
+  "module": "./dist/random.js",
   "repository": "transitive-bullshit/random",
   "author": "Travis Fischer <travis@automagical.ai>",
   "license": "MIT",
@@ -49,6 +49,7 @@
     "del-cli": "^1.1.0",
     "esm": "^3.0.48",
     "standard": "^11.0.0",
+    "typescript": "^3.8.3",
     "update-markdown-jsdoc": "^1.0.2"
   },
   "dependencies": {
