@@ -1,7 +1,9 @@
-export default (random, ...args) => {
-  const normal = random.normal(...args)
+import { Random } from "../random"
 
-  return () => {
-    return Math.exp(normal())
-  }
+export default (random: Random, mu = 0, sigma = 1) => {
+    const normal = random.normal(mu, sigma);
+
+    return () => {
+        return Math.exp(normal())
+    }
 }
