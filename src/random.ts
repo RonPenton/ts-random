@@ -1,24 +1,24 @@
-import ow from 'ow'
+import ow from "ow";
 
-import uniform from './distributions/uniform'
-import uniformInt from './distributions/uniform-int'
-import uniformBoolean from './distributions/uniform-boolean'
+import uniform from "./distributions/uniform";
+import uniformInt from "./distributions/uniform-int";
+import uniformBoolean from "./distributions/uniform-boolean";
 
-import normal from './distributions/normal'
-import logNormal from './distributions/log-normal'
+import normal from "./distributions/normal";
+import logNormal from "./distributions/log-normal";
 
-import bernoulli from './distributions/bernoulli'
-import binomial from './distributions/binomial'
-import geometric from './distributions/geometric'
+import bernoulli from "./distributions/bernoulli";
+import binomial from "./distributions/binomial";
+import geometric from "./distributions/geometric";
 
-import poisson from './distributions/poisson'
-import exponential from './distributions/exponential'
+import poisson from "./distributions/poisson";
+import exponential from "./distributions/exponential";
 
-import irwinHall from './distributions/irwin-hall'
-import bates from './distributions/bates'
-import pareto from './distributions/pareto'
+import irwinHall from "./distributions/irwin-hall";
+import bates from "./distributions/bates";
+import pareto from "./distributions/pareto";
 
-import seedrandom from 'seedrandom';
+import seedrandom from "seedrandom";
 
 /**
  * Seedable random number generator supporting many common distributions.
@@ -37,7 +37,7 @@ export class Random {
 
     constructor(seed: string) {
         ow(seed, ow.string);
-        this._cache = {}
+        this._cache = {};
         this._generator = seedrandom(seed);
     }
 
@@ -53,7 +53,7 @@ export class Random {
      * @return {number}
      */
     next() {
-        return this._generator.double();
+        return this._generator();
     }
 
     /**
@@ -67,7 +67,7 @@ export class Random {
      * @return {number}
      */
     float(min: number, max: number) {
-        return this.uniform(min, max)()
+        return this.uniform(min, max)();
     }
 
     /**
@@ -81,7 +81,7 @@ export class Random {
      * @return {number}
      */
     int(min: number, max: number) {
-        return this.uniformInt(min, max)()
+        return this.uniformInt(min, max)();
     }
 
     /**
@@ -94,7 +94,7 @@ export class Random {
      * @return {boolean}
      */
     boolean() {
-        return this.uniformBoolean()()
+        return this.uniformBoolean()();
     }
 
     // --------------------------------------------------------------------------
@@ -109,7 +109,7 @@ export class Random {
      * @return {function}
      */
     uniform(min: number, max: number) {
-        return this._memoize('uniform', uniform, min, max);
+        return this._memoize("uniform", uniform, min, max);
     }
 
     /**
@@ -120,7 +120,7 @@ export class Random {
      * @return {function}
      */
     uniformInt(min: number, max: number) {
-        return this._memoize('uniformInt', uniformInt, min, max)
+        return this._memoize("uniformInt", uniformInt, min, max);
     }
 
     /**
@@ -132,7 +132,7 @@ export class Random {
      * @return {function}
      */
     uniformBoolean() {
-        return this._memoize('uniformBoolean', uniformBoolean)
+        return this._memoize("uniformBoolean", uniformBoolean);
     }
 
     // --------------------------------------------------------------------------
@@ -147,7 +147,7 @@ export class Random {
      * @return {function}
      */
     normal(mu: number, sigma: number) {
-        return normal(this, mu, sigma)
+        return normal(this, mu, sigma);
     }
 
     /**
@@ -158,7 +158,7 @@ export class Random {
      * @return {function}
      */
     logNormal(mu: number, sigma: number) {
-        return logNormal(this, mu, sigma)
+        return logNormal(this, mu, sigma);
     }
 
     // --------------------------------------------------------------------------
@@ -172,7 +172,7 @@ export class Random {
      * @return {function}
      */
     bernoulli(p: number) {
-        return bernoulli(this, p)
+        return bernoulli(this, p);
     }
 
     /**
@@ -183,7 +183,7 @@ export class Random {
      * @return {function}
      */
     binomial(n: number, p: number) {
-        return binomial(this, n, p)
+        return binomial(this, n, p);
     }
 
     /**
@@ -193,7 +193,7 @@ export class Random {
      * @return {function}
      */
     geometric(p: number) {
-        return geometric(this, p)
+        return geometric(this, p);
     }
 
     // --------------------------------------------------------------------------
@@ -207,7 +207,7 @@ export class Random {
      * @return {function}
      */
     poisson(lambda: number) {
-        return poisson(this, lambda)
+        return poisson(this, lambda);
     }
 
     /**
@@ -217,7 +217,7 @@ export class Random {
      * @return {function}
      */
     exponential(lambda: number) {
-        return exponential(this, lambda)
+        return exponential(this, lambda);
     }
 
     // --------------------------------------------------------------------------
@@ -231,7 +231,7 @@ export class Random {
      * @return {function}
      */
     irwinHall(n: number) {
-        return irwinHall(this, n)
+        return irwinHall(this, n);
     }
 
     /**
@@ -241,7 +241,7 @@ export class Random {
      * @return {function}
      */
     bates(n: number) {
-        return bates(this, n)
+        return bates(this, n);
     }
 
     /**
@@ -251,7 +251,7 @@ export class Random {
      * @return {function}
      */
     pareto(alpha: number) {
-        return pareto(this, alpha)
+        return pareto(this, alpha);
     }
 
     // --------------------------------------------------------------------------
@@ -273,15 +273,18 @@ export class Random {
      * @return {function}
      */
     private _memoize(label: string, getter: Function, ...args: any[]) {
-        const key = `${args.join(';')}`
-        let value = this._cache[label]
+        const key = `${args.join(";")}`;
+        let value = this._cache[label];
 
         if (value === undefined || value.key !== key) {
-            value = { key, distribution: getter(this, ...args) }
-            this._cache[label] = value
+            value = {
+                key,
+                distribution: getter(this, ...args)
+            };
+            this._cache[label] = value;
         }
 
-        return value.distribution
+        return value.distribution;
     }
 }
 

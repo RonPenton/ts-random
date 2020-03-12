@@ -10,8 +10,9 @@ export default (random: Random, n = 1, p = 0.5) => {
         let x = 0;
 
         while (i++ < n) {
-            if (random.next() < p)
+            if (random.next() < p) {
                 x += 1;
+            }
         }
 
         return x;

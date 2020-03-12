@@ -1,11 +1,11 @@
 {
     "name": "ts-random",
-    "version": "2.1.1",
+    "version": "1.0.0",
     "description": "Seedable random number generator supporting many common distributions.",
     "main": "./dist/index.js",
     "module": "./dist/random.js",
-    "repository": "transitive-bullshit/random",
-    "author": "Travis Fischer <travis@automagical.ai>",
+    "repository": "RonPenton/ts-random",
+    "author": "Ron Penton",
     "license": "MIT",
     "reveal": true,
     "scripts": {
@@ -41,11 +41,19 @@
         "bates"
     ],
     "devDependencies": {
+        "@types/node": "^13.9.0",
         "@types/seedrandom": "^2.4.28",
-        "ava": "^0.25.0",
+        "@typescript-eslint/eslint-plugin": "^2.23.0",
+        "@typescript-eslint/parser": "^2.23.0",
+        "ava": "^3.5.0",
         "del-cli": "^1.1.0",
+        "eslint": "^6.8.0",
+        "eslint-config-standard": "^14.1.0",
+        "eslint-plugin-import": "^2.20.1",
+        "eslint-plugin-node": "^11.0.0",
+        "eslint-plugin-promise": "^4.2.1",
+        "eslint-plugin-standard": "^4.0.1",
         "esm": "^3.0.48",
-        "standard": "^11.0.0",
         "typescript": "^3.8.3"
     },
     "dependencies": {
@@ -59,11 +67,6 @@
     "ava": {
         "require": [
             "esm"
-        ]
-    },
-    "babel": {
-        "presets": [
-            "env"
         ]
     }
 }

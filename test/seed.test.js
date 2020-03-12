@@ -1,16 +1,14 @@
-import test from 'ava'
-import seedrandom from 'seedrandom'
+import test from 'ava';
 
-import random from '..'
+import random from '../dist/index';
 
-test('random.clone witth a seed is consistent', (t) => {
-  const r = random.clone(seedrandom('ZjExZDczNWQxY2NlZjUzYmRiZWU0ZGIz'))
-  const d = r.uniform()
-  const o = []
-  for (let i = 0; i < 100; ++i) {
-    const v = d()
-    o.push(v)
-  }
+test('random.clone with a seed is consistent', (t) => {
+    const r1 = new random.Random('ZjExZDczNWQxY2NlZjUzYmRiZWU0ZGIz');
+    const r2 = new random.Random('ZjExZDczNWQxY2NlZjUzYmRiZWU0ZGIz');
 
-  t.snapshot(o)
+    for (let i = 0; i < 1000; ++i) {
+        const n1 = r1.next();
+        const n2 = r2.next();
+        t.true(n1 == n2);
+    }
 })
