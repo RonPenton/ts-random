@@ -2,10 +2,10 @@ import test from 'ava'
 import seedrandom from 'seedrandom'
 
 import inDelta from '../_in-delta'
-import random from '../../dist/index'
+import Random from '../../dist/index'
 
 test('random.uniform() is in [0, 1)', (t) => {
-    const r = new random.Random('ZDJjM2IyNmFlNmVjNWQwMGZkMmY1Y2Nk')
+    const r = new Random('ZDJjM2IyNmFlNmVjNWQwMGZkMmY1Y2Nk')
     const d = r.uniform()
     for (let i = 0; i < 10000; ++i) {
         const v = d()
@@ -15,7 +15,7 @@ test('random.uniform() is in [0, 1)', (t) => {
 })
 
 test('random.uniform() has mean 0.5', (t) => {
-    const r = new random.Random('MzUyYjZjZmM4YWI5NzEwNDliZGRmOTE3')
+    const r = new Random('MzUyYjZjZmM4YWI5NzEwNDliZGRmOTE3')
     const d = r.uniform()
     let sum = 0
 
@@ -29,7 +29,7 @@ test('random.uniform() has mean 0.5', (t) => {
 })
 
 test('random.uniform(max) returns numbers in [0, max)', (t) => {
-    const r = new random.Random('ODEzYWI1MjQ2NGEwYWExOTRlZTJjYmI4')
+    const r = new Random('ODEzYWI1MjQ2NGEwYWExOTRlZTJjYmI4')
     const d = r.uniform(42)
     for (let i = 0; i < 10000; ++i) {
         const v = d()
@@ -39,7 +39,7 @@ test('random.uniform(max) returns numbers in [0, max)', (t) => {
 })
 
 test('random.uniform(max) has mean max / 2', (t) => {
-    const r = new random.Random('NjcwNjY0MDdiNTEzMmE4Y2I0ZWYxYzNl')
+    const r = new Random('NjcwNjY0MDdiNTEzMmE4Y2I0ZWYxYzNl')
     const d = r.uniform(42)
     let sum = 0
 
@@ -53,7 +53,7 @@ test('random.uniform(max) has mean max / 2', (t) => {
 })
 
 test('random.uniform(min, max) returns numbers in [min, max)', (t) => {
-    const r = new random.Random('NWI0ZWQ0MDBkMGFmZGZkZGU1YjEwMThk')
+    const r = new Random('NWI0ZWQ0MDBkMGFmZGZkZGU1YjEwMThk')
     const d = r.uniform(10, 42)
     for (let i = 0; i < 10000; ++i) {
         const v = d()
@@ -63,7 +63,7 @@ test('random.uniform(min, max) returns numbers in [min, max)', (t) => {
 })
 
 test('random.uniform(min, max) has mean (min + max) / 2', (t) => {
-    const r = new random.Random('M2M2ZGFiZDdkOGUzMjkwOTM1MzQwMWRm')
+    const r = new Random('M2M2ZGFiZDdkOGUzMjkwOTM1MzQwMWRm')
     const d = r.uniform(10, 42)
     let sum = 0
 

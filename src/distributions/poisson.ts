@@ -1,5 +1,5 @@
 import ow from "ow";
-import { Random } from "../random";
+import Random from "../random";
 
 const logFactorialTable = [
     0.0,

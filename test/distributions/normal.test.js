@@ -2,10 +2,10 @@ import test from 'ava'
 import seedrandom from 'seedrandom'
 
 import inDelta from '../_in-delta'
-import random from '../../dist/index'
+import Random from '../../dist/index'
 
 test('random.normal() produces numbers', (t) => {
-    const r = new random.Random('ZDJjM2IyNmFlNmVjNWQwMGZkMmY1Y2Nk')
+    const r = new Random('ZDJjM2IyNmFlNmVjNWQwMGZkMmY1Y2Nk')
     const d = r.normal()
     for (let i = 0; i < 10000; ++i) {
         const v = d()
@@ -14,7 +14,7 @@ test('random.normal() produces numbers', (t) => {
 })
 
 test('random.normal(120) has mean 120', (t) => {
-    const r = new random.Random('MzUyYjZjZmM4YWI5NzEwNDliZGRmOTE3')
+    const r = new Random('MzUyYjZjZmM4YWI5NzEwNDliZGRmOTE3')
     const d = r.normal(120)
     let sum = 0
 
