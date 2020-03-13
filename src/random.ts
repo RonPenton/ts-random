@@ -294,6 +294,23 @@ export default class Random {
         throw new Error("Something went wrong. This should never happen.");
     }
 
+    lowerBiasedNumber(min: number, maxDigits: number) {
+        // biases random numbers so that 1-9 has about the same chance of being generated as 10-99 and 100-999, etc.
+        // Since most house numbers are in the 10's and 100's but not a ton in the 10,000's, this mimics real life data.
+        const digits = this.int(1, maxDigits);
+        const max = Math.pow(10, digits) - 1;
+        return this.int(min, max);
+    }
+
+    randomDigits(length: number): string {
+        const ret: string[] = [];
+        for (let i = 0; i < length; i++) {
+            ret.push(this.int(0, 9).toString());
+        }
+
+        return ret.join("");
+    }
+
     // --------------------------------------------------------------------------
     // Internal
     // --------------------------------------------------------------------------
