@@ -266,6 +266,34 @@ export default class Random {
         return pareto(this, alpha);
     }
 
+    chance(percent: number) {
+        return this.float(0, 100) < percent;
+    };
+
+    chanceEach<T>(percent: number, items: T[]) {
+        const ret: T[] = [];
+        items.forEach(x => this.chance(percent) ? ret.push(x) : null);
+        return ret;
+    }
+
+    pick<T>(items: T[]) {
+        return items[this.int(0, items.length - 1)];
+    }
+
+    pickWeighted<T>(items: { item: T; probability: number }[]) {
+        const sum = items.reduce((acc, val) => acc + val.probability, 0);
+        const val = this.int(0, sum);
+        let prob = 0;
+        for (const item of items) {
+            prob += item.probability;
+            if (val < prob) {
+                return item.item;
+            }
+        }
+
+        throw new Error("Something went wrong. This should never happen.");
+    }
+
     // --------------------------------------------------------------------------
     // Internal
     // --------------------------------------------------------------------------
