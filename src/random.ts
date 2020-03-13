@@ -282,7 +282,7 @@ export default class Random {
 
     pickWeighted<T>(items: HasProbability<T>[]) {
         const sum = items.reduce((acc, val) => acc + val.probability, 0);
-        const val = this.int(0, sum);
+        const val = this.int(0, sum - 1);
         let prob = 0;
         for (const item of items) {
             prob += item.probability;
