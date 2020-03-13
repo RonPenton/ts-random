@@ -1,4 +1,6 @@
 "use strict";
 
-import Random from "./random";
+import Random, { HasProbability } from "./random";
 export default Random;
+
+export { HasProbability };
