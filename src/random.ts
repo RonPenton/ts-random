@@ -280,7 +280,7 @@ export default class Random {
         return items[this.int(0, items.length - 1)];
     }
 
-    pickWeighted<T>(items: { item: T; probability: number }[]) {
+    pickWeighted<T>(items: HasProbability<T>[]) {
         const sum = items.reduce((acc, val) => acc + val.probability, 0);
         const val = this.int(0, sum);
         let prob = 0;
@@ -343,4 +343,9 @@ export default class Random {
 
         return value.distribution;
     }
+}
+
+export interface HasProbability<T> {
+    item: T;
+    probability: number;
 }

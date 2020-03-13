@@ -1,6 +1,6 @@
 {
     "name": "ts-random",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "description": "Seedable random number generator supporting many common distributions.",
     "main": "./dist/index.js",
     "module": "./dist/random.js",
