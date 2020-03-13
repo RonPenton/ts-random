@@ -66,8 +66,11 @@ export default class Random {
      * @param {number} [max=1] - Upper bound (float, exclusive)
      * @return {number}
      */
-    float(min: number, max: number) {
-        return this.uniform(min, max)();
+    float(): number;
+    float(max: number): number;
+    float(min: number, max: number): number;
+    float(min?: number, max?: number): number {
+        return this.uniform(min!, max!)();
     }
 
     /**
@@ -80,8 +83,11 @@ export default class Random {
      * @param {number} [max=1] - Upper bound (integer, inclusive)
      * @return {number}
      */
-    int(min: number, max: number) {
-        return this.uniformInt(min, max)();
+    int(): number;
+    int(max: number): number;
+    int(min: number, max: number): number;
+    int(min?: number, max?: number): number {
+        return this.uniformInt(min!, max!)();
     }
 
     /**
@@ -108,7 +114,10 @@ export default class Random {
      * @param {number} [max=1] - Upper bound (float, exclusive)
      * @return {function}
      */
-    uniform(min: number, max: number) {
+    uniform(): () => number;
+    uniform(max: number): () => number;
+    uniform(min: number, max: number): () => number;
+    uniform(min?: number, max?: number) {
         return this._memoize("uniform", uniform, min, max);
     }
 
@@ -119,7 +128,10 @@ export default class Random {
      * @param {number} [max=1] - Upper bound (integer, inclusive)
      * @return {function}
      */
-    uniformInt(min: number, max: number) {
+    uniformInt(): () => number;
+    uniformInt(max: number): () => number;
+    uniformInt(min: number, max: number): () => number;
+    uniformInt(min?: number, max?: number) {
         return this._memoize("uniformInt", uniformInt, min, max);
     }
 
@@ -146,7 +158,7 @@ export default class Random {
      * @param {number} [sigma=1] - Standard deviation
      * @return {function}
      */
-    normal(mu: number, sigma: number) {
+    normal(mu?: number, sigma?: number) {
         return normal(this, mu, sigma);
     }
 
@@ -157,7 +169,7 @@ export default class Random {
      * @param {number} [sigma=1] - Standard deviation of underlying normal distribution
      * @return {function}
      */
-    logNormal(mu: number, sigma: number) {
+    logNormal(mu?: number, sigma?: number) {
         return logNormal(this, mu, sigma);
     }
 
@@ -171,7 +183,7 @@ export default class Random {
      * @param {number} [p=0.5] - Success probability of each trial.
      * @return {function}
      */
-    bernoulli(p: number) {
+    bernoulli(p?: number) {
         return bernoulli(this, p);
     }
 
@@ -182,7 +194,7 @@ export default class Random {
      * @param {number} [p=0.5] - Success probability of each trial.
      * @return {function}
      */
-    binomial(n: number, p: number) {
+    binomial(n?: number, p?: number) {
         return binomial(this, n, p);
     }
 
@@ -192,7 +204,7 @@ export default class Random {
      * @param {number} [p=0.5] - Success probability of each trial.
      * @return {function}
      */
-    geometric(p: number) {
+    geometric(p?: number) {
         return geometric(this, p);
     }
 
@@ -206,7 +218,7 @@ export default class Random {
      * @param {number} [lambda=1] - Mean (lambda > 0)
      * @return {function}
      */
-    poisson(lambda: number) {
+    poisson(lambda?: number) {
         return poisson(this, lambda);
     }
 
@@ -216,7 +228,7 @@ export default class Random {
      * @param {number} [lambda=1] - Inverse mean (lambda > 0)
      * @return {function}
      */
-    exponential(lambda: number) {
+    exponential(lambda?: number) {
         return exponential(this, lambda);
     }
 
@@ -230,7 +242,7 @@ export default class Random {
      * @param {number} [n=1] - Number of uniform samples to sum (n >= 0)
      * @return {function}
      */
-    irwinHall(n: number) {
+    irwinHall(n?: number) {
         return irwinHall(this, n);
     }
 
@@ -240,7 +252,7 @@ export default class Random {
      * @param {number} [n=1] - Number of uniform samples to average (n >= 1)
      * @return {function}
      */
-    bates(n: number) {
+    bates(n?: number) {
         return bates(this, n);
     }
 
@@ -250,7 +262,7 @@ export default class Random {
      * @param {number} [alpha=1] - Alpha
      * @return {function}
      */
-    pareto(alpha: number) {
+    pareto(alpha?: number) {
         return pareto(this, alpha);
     }
 
