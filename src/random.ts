@@ -38,7 +38,7 @@ export default class Random {
     constructor(seed: string) {
         ow(seed, ow.string);
         this._cache = {};
-        this._generator = seedrandom(seed);
+        this._generator = seedrandom.xor4096(seed, { state: true });
     }
 
     // --------------------------------------------------------------------------
@@ -282,7 +282,7 @@ export default class Random {
 
     pickWeighted<T>(items: HasProbability<T>[]) {
         const sum = items.reduce((acc, val) => acc + val.probability, 0);
-        const val = this.int(0, sum - 1);
+        const val = this.float(0, sum);
         let prob = 0;
         for (const item of items) {
             prob += item.probability;
@@ -342,6 +342,10 @@ export default class Random {
         }
 
         return value.distribution;
+    }
+
+    state() {
+        return this._generator.state();
     }
 }
 
