@@ -303,12 +303,9 @@ export default class Random {
     }
 
     randomDigits(length: number): string {
-        const ret: string[] = [];
-        for (let i = 0; i < length; i++) {
-            ret.push(this.int(0, 9).toString());
-        }
-
-        return ret.join("");
+        const max = Math.pow(10, length) - 1;
+        const num = this.int(0, max);
+        return num.toString().padStart(0);
     }
 
     // --------------------------------------------------------------------------
