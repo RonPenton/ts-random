@@ -296,7 +296,7 @@ export default class Random {
     }
 
     pickNof<T>(n: number, items: HasProbability<T>[]): T[] {
-        ow(n < items.length, ow.boolean.true);
+        ow(n <= items.length, ow.boolean.true);
 
         return this._pickNof(n, items, []);
     }
