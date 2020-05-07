@@ -19,6 +19,7 @@ import bates from "./distributions/bates";
 import pareto from "./distributions/pareto";
 
 import seedrandom from "seedrandom";
+import { isNullOrUndefined } from "util";
 
 /**
  * Seedable random number generator supporting many common distributions.
@@ -292,6 +293,23 @@ export default class Random {
         }
 
         throw new Error("Something went wrong. This should never happen.");
+    }
+
+    pickNof<T>(n: number, items: HasProbability<T>[]): T[] {
+        ow(n < items.length, ow.boolean.true);
+
+        return this._pickNof(n, items, []);
+    }
+
+    private _pickNof<T>(n: number, items: HasProbability<T>[], picked: T[]): T[] {
+        if (picked.length == n)
+            return picked;
+    
+        const item = this.pickWeighted(items);
+        if (!picked.some(x => x === item))
+            picked.push(item);
+        
+        return this._pickNof(n, items, picked);
     }
 
     lowerBiasedNumber(min: number, maxDigits: number) {
